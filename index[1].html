@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A student-friendly guide to Console and File Input-Output in Java.">
+  <title>Console & File I/O in Java</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="navbar">
+      <a class="brand" href="#home">Java<span>I/O</span></a>
+      <button class="menu-toggle" aria-label="Toggle navigation">☰</button>
+      <div class="nav-links">
+        <a href="#introduction">Introduction</a>
+        <a href="#console">Console I/O</a>
+        <a href="#reading">Reading Files</a>
+        <a href="#writing">Writing Files</a>
+        <a href="#examples">Examples</a>
+        <a href="#conclusion">Conclusion</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="hero-content">
+        <p class="eyebrow">JAVA PROGRAMMING • COLLEGE ASSIGNMENT</p>
+        <h1>Console and File<br><span>Input-Output</span> in Java</h1>
+        <p class="hero-text">
+          A clear guide to reading and writing data using the console and files,
+          with simple Java examples and practical use cases.
+        </p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#introduction">Start Learning</a>
+          <a class="btn secondary" href="#examples">View Examples</a>
+        </div>
+      </div>
+      <div class="hero-card" aria-label="Java input output overview">
+        <div class="terminal">
+          <div class="terminal-top"><span></span><span></span><span></span></div>
+          <p><span class="prompt">$</span> java IOExample</p>
+          <p class="muted">Enter your name:</p>
+          <p>&gt; Varsha</p>
+          <p class="success">Hello, Varsha!</p>
+          <p class="cursor">▌</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="introduction" class="section">
+      <div class="section-heading">
+        <p class="eyebrow">01 • INTRODUCTION</p>
+        <h2>Understanding Java I/O</h2>
+        <p>Input and output allow a Java program to communicate with users and external data sources.</p>
+      </div>
+      <div class="intro-grid">
+        <article class="info-card">
+          <div class="icon">↔</div>
+          <h3>What is I/O?</h3>
+          <p><strong>Input</strong> means receiving data, while <strong>output</strong> means displaying or storing data produced by a program.</p>
+        </article>
+        <article class="info-card">
+          <div class="icon">⌨</div>
+          <h3>Console I/O</h3>
+          <p>Data is entered through the keyboard and results are displayed in the console. The <strong>Scanner</strong> class is commonly used for input.</p>
+        </article>
+        <article class="info-card">
+          <div class="icon">▤</div>
+          <h3>File I/O</h3>
+          <p>Data can be read from or written to files using classes such as <strong>FileReader</strong> and <strong>FileWriter</strong>.</p>
+        </article>
+      </div>
+      <div class="comparison">
+        <div>
+          <span class="label">CONSOLE I/O</span>
+          <h3>Temporary interaction</h3>
+          <p>Useful when a program needs information directly from a user or needs to show immediate results.</p>
+        </div>
+        <div class="vs">VS</div>
+        <div>
+          <span class="label">FILE I/O</span>
+          <h3>Persistent data</h3>
+          <p>Useful when information needs to be stored and accessed again after the program ends.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="console" class="section alt">
+      <div class="section-heading">
+        <p class="eyebrow">02 • CONSOLE INPUT-OUTPUT</p>
+        <h2>Reading and writing from the console</h2>
+        <p>Java provides <code>System.in</code> for standard input and <code>System.out</code> for standard output.</p>
+      </div>
+      <div class="two-column">
+        <div class="content">
+          <h3>Scanner class</h3>
+          <p><code>Scanner</code> is a simple way to read different types of data from the keyboard.</p>
+          <ul class="check-list">
+            <li><code>nextInt()</code> — reads an integer</li>
+            <li><code>nextDouble()</code> — reads a decimal number</li>
+            <li><code>next()</code> — reads one word</li>
+            <li><code>nextLine()</code> — reads a complete line</li>
+          </ul>
+          <div class="tip"><strong>Tip:</strong> Always close the Scanner when you no longer need it.</div>
+        </div>
+        <div class="code-card">
+          <div class="code-header"><span>ConsoleInput.java</span><button class="copy-btn">Copy</button></div>
+<pre><code>import java.util.Scanner;
+
+public class ConsoleInput {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter your name: ");
+        String name = sc.nextLine();
+
+        System.out.print("Enter your age: ");
+        int age = sc.nextInt();
+
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+
+        sc.close();
+    }
+}</code></pre>
+        </div>
+      </div>
+      <div class="output-box">
+        <span>Sample output</span>
+        <code>Enter your name: Varsha<br>Enter your age: 20<br>Name: Varsha<br>Age: 20</code>
+      </div>
+    </section>
+
+    <section id="reading" class="section">
+      <div class="section-heading">
+        <p class="eyebrow">03 • READING FILES</p>
+        <h2>Reading data from a file</h2>
+        <p>File input allows a Java program to retrieve information stored in a text file.</p>
+      </div>
+      <div class="class-grid">
+        <article class="class-card featured">
+          <span class="tag">CHARACTER STREAM</span>
+          <h3>FileReader</h3>
+          <p>Reads characters from a text file. It is suitable for basic character-by-character file reading.</p>
+          <div class="mini-code">FileReader reader = new FileReader("data.txt");</div>
+        </article>
+        <article class="class-card">
+          <span class="tag">BUFFERED READING</span>
+          <h3>BufferedReader</h3>
+          <p>Reads text efficiently and provides <code>readLine()</code> for convenient line-by-line reading.</p>
+          <div class="mini-code">BufferedReader br = new BufferedReader(reader);</div>
+        </article>
+      </div>
+      <div class="code-card large-code">
+        <div class="code-header"><span>ReadFile.java</span><button class="copy-btn">Copy</button></div>
+<pre><code>import java.io.*;
+
+public class ReadFile {
+    public static void main(String[] args) {
+        try {
+            FileReader fr = new FileReader("data.txt");
+            BufferedReader br = new BufferedReader(fr);
+
+            String line;
+            while ((line = br.readLine()) != null) {
+                System.out.println(line);
+            }
+
+            br.close();
+            fr.close();
+        } catch (IOException e) {
+            System.out.println("Error reading file.");
+        }
+    }
+}</code></pre>
+      </div>
+      <div class="use-case">
+        <h3>Common use cases</h3>
+        <div class="use-items">
+          <span>📄 Reading notes</span><span>📊 Loading stored records</span><span>⚙ Reading configuration</span><span>📝 Processing text data</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="writing" class="section alt">
+      <div class="section-heading">
+        <p class="eyebrow">04 • WRITING FILES</p>
+        <h2>Writing data to a file</h2>
+        <p>File output lets a program save information so it can be used later.</p>
+      </div>
+      <div class="class-grid">
+        <article class="class-card featured">
+          <span class="tag">CHARACTER STREAM</span>
+          <h3>FileWriter</h3>
+          <p>Writes character data to a file. It can create a new file or write to an existing file.</p>
+          <div class="mini-code">FileWriter writer = new FileWriter("output.txt");</div>
+        </article>
+        <article class="class-card">
+          <span class="tag">BUFFERED WRITING</span>
+          <h3>BufferedWriter</h3>
+          <p>Buffers output and provides convenient methods such as <code>newLine()</code>.</p>
+          <div class="mini-code">BufferedWriter bw = new BufferedWriter(writer);</div>
+        </article>
+      </div>
+      <div class="code-card large-code">
+        <div class="code-header"><span>WriteFile.java</span><button class="copy-btn">Copy</button></div>
+<pre><code>import java.io.*;
+
+public class WriteFile {
+    public static void main(String[] args) {
+        try {
+            FileWriter fw = new FileWriter("output.txt");
+            BufferedWriter bw = new BufferedWriter(fw);
+
+            bw.write("Java File I/O");
+            bw.newLine();
+            bw.write("Writing data to a file.");
+
+            bw.close();
+            fw.close();
+
+            System.out.println("Data written successfully.");
+        } catch (IOException e) {
+            System.out.println("Error writing file.");
+        }
+    }
+}</code></pre>
+      </div>
+      <div class="use-case">
+        <h3>Common use cases</h3>
+        <div class="use-items">
+          <span>💾 Saving user data</span><span>📋 Creating reports</span><span>🗃 Storing records</span><span>📈 Saving program results</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="examples" class="section">
+      <div class="section-heading">
+        <p class="eyebrow">05 • JAVA EXAMPLES</p>
+        <h2>Quick reference</h2>
+        <p>Compare the main classes used in console and file input-output.</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Class / Method</th><th>Purpose</th><th>Typical use</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>Scanner</code></td><td>Reads input from a source</td><td>Keyboard / console input</td></tr>
+            <tr><td><code>FileReader</code></td><td>Reads character data</td><td>Basic text file reading</td></tr>
+            <tr><td><code>BufferedReader</code></td><td>Reads text efficiently</td><td>Line-by-line file reading</td></tr>
+            <tr><td><code>FileWriter</code></td><td>Writes character data</td><td>Basic text file writing</td></tr>
+            <tr><td><code>BufferedWriter</code></td><td>Buffers character output</td><td>Efficient text file writing</td></tr>
+            <tr><td><code>System.out</code></td><td>Displays output</td><td>Console output</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="example-tabs">
+        <button class="tab active" data-target="ex1">Scanner</button>
+        <button class="tab" data-target="ex2">FileReader</button>
+        <button class="tab" data-target="ex3">FileWriter</button>
+      </div>
+      <div id="ex1" class="tab-panel active">
+        <h3>Simple Scanner example</h3>
+<pre><code>Scanner sc = new Scanner(System.in);
+int number = sc.nextInt();
+System.out.println("You entered: " + number);</code></pre>
+      </div>
+      <div id="ex2" class="tab-panel">
+        <h3>Simple FileReader example</h3>
+<pre><code>FileReader fr = new FileReader("data.txt");
+int ch;
+while ((ch = fr.read()) != -1) {
+    System.out.print((char) ch);
+}
+fr.close();</code></pre>
+      </div>
+      <div id="ex3" class="tab-panel">
+        <h3>Simple FileWriter example</h3>
+<pre><code>FileWriter fw = new FileWriter("data.txt");
+fw.write("Hello Java!");
+fw.close();</code></pre>
+      </div>
+    </section>
+
+    <section id="conclusion" class="section conclusion">
+      <div class="conclusion-card">
+        <p class="eyebrow">06 • CONCLUSION</p>
+        <h2>Choosing the right I/O approach</h2>
+        <p>
+          Console I/O is useful for direct interaction with users, while file I/O is useful
+          when information needs to be stored and reused. Java provides simple classes such as
+          <strong>Scanner</strong>, <strong>FileReader</strong>, <strong>BufferedReader</strong>,
+          <strong>FileWriter</strong>, and <strong>BufferedWriter</strong> to handle these tasks.
+        </p>
+        <div class="takeaway">
+          <span>KEY TAKEAWAY</span>
+          <strong>Input brings data into a program. Output sends or stores data from a program.</strong>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Console & File Input-Output in Java</p>
+    <p>College Assignment • Java Programming</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
